@@ -1,0 +1,162 @@
+/* --- 1. SETUP & VARIABLES --- */
+:root {
+    /* Colors */
+    --bg-body: #0a0a0a;       /* Almost Black */
+    --bg-card: #161616;       /* Dark Grey */
+    --bg-sidebar: #111111;    /* Sidebar specific */
+    
+    --text-main: #f0f0f0;     /* High readability white */
+    --text-muted: #a0a0a0;    /* Softer grey for descriptions */
+    
+    --accent: #2563eb;        /* Standard Tech Blue */
+    --border: #222222;        /* Subtle borders */
+    
+    /* Spacing */
+    --spacing-layout: 40px;   /* Gap between sidebar and main */
+    --radius: 8px;            /* Small radius = Professional/Sober */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: --bg-body; /* Fallback */
+    background: #0a0a0a;
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* --- 2. THE LAYOUT (Desktop First) --- */
+.main-grid {
+    width: 100%;
+    max-width: 1100px; /* Standard reading width */
+    margin: 40px;
+    
+    display: grid;
+    /* Sidebar is 300px fixed, Content takes the rest */
+    grid-template-columns: 300px 1fr; 
+    gap: var(--spacing-layout);
+    align-items: start; /* Prevents sidebar from stretching if content is long */
+}
+
+/* --- 3. THE SIDEBAR (Sticky) --- */
+.sidebar {
+    background: var(--bg-sidebar);
+    padding: 30px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    position: sticky; /* Keeps it visible while scrolling main content */
+    top: 40px; 
+}
+
+.avatar-placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    border-radius: 50%; /* Circle */
+    margin-bottom: 20px;
+}
+
+.profile-block h1 { font-size: 1.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 5px; }
+.role { color: var(--text-main); font-weight: 600; margin-bottom: 2px; }
+.sub-role { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
+.location-badge { font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+
+.divider { border: 0; border-top: 1px solid var(--border); margin: 25px 0; }
+
+.btn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+.btn:hover { background: #1d4ed8; }
+
+.social-links { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+.social-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+.social-links a:hover { color: var(--accent); }
+
+.skill-list { list-style: none; }
+.skill-list li { 
+    background: #1a1a1a; 
+    border: 1px solid #333;
+    padding: 5px 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* --- 4. THE MAIN CONTENT --- */
+.content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.card h2 {
+    color: var(--accent);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+}
+
+/* Timeline / Education Styling */
+.timeline-item { margin-bottom: 20px; }
+.timeline-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+.timeline-header h3 { font-size: 1.1rem; font-weight: 600; }
+.date { color: var(--text-muted); font-size: 0.85rem; }
+.degree { font-style: italic; color: #ddd; margin-bottom: 5px; }
+
+/* Project Styling */
+.project-item { 
+    background: #111; 
+    padding: 15px; 
+    border-radius: 6px; 
+    margin-bottom: 15px; 
+    border: 1px solid #222;
+}
+.project-item h3 { font-size: 1rem; margin-bottom: 5px; color: #fff; }
+.project-item p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px; }
+
+.tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    background: #222;
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+/* --- 5. MOBILE RESPONSIVE --- */
+@media (max-width: 850px) {
+    .main-grid {
+        grid-template-columns: 1fr; /* Stack vertically */
+        margin: 20px;
+        gap: 20px;
+    }
+    
+    .sidebar {
+        position: static; /* Remove sticky on mobile */
+    }
+}
