@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positronic Soul | Manual Control</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <style>
+        /* --- POSITRONIC STYLING --- */
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace; /* Tech/Terminal font */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            font-weight: normal;
+            letter-spacing: 2px;
+            color: #8b5cf6; /* Neon Purple */
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            background: #111;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        /* Tech-looking Slider */
+        input[type=range] {
+            width: 200px;
+            accent-color: #8b5cf6;
+        }
+
+        /* Tech-looking Button */
+        button {
+            background: #222;
+            color: #fff;
+            border: 1px solid #8b5cf6;
+            padding: 8px 16px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        button:hover {
+            background: #8b5cf6;
+            color: #000;
+            box-shadow: 0 0 15px #8b5cf6;
+        }
+        
+        button:active {
+            transform: translateY(2px);
+        }
+
+        .hud-text {
+            font-size: 0.8rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>LOG 001: MANUAL OVERRIDE</h2>
+    <div id="canvas-container"></div>
+    
+    <div class="controls">
+        <div class="slider-group">
+            <label class="hud-text">THRUST OUTPUT</label><br>
+            <input type="range" id="thrustSlider" min="0" max="100" value="0">
+        </div>
+        <button id="windBtn">⚠️ DISTURBANCE</button>
+    </div>
+
+<script>
+    // --- SIMULATION VARIABLES ---
+    let droneY = 500;       // Starting position (bottom)
+    let velocity = 0;       // Vertical speed
+    let gravity = 0.4;      // Constant downward force
+    let friction = 0.98;    // Air resistance
+    let targetY = 300;      // The Blue Line
+    
+    let windForce = 0;      // External disturbance
+    
+    // Trail history for visual graph
+    let historyPath = []; 
+
+    function setup() {
+        let canvas = createCanvas(400, 500);
+        canvas.parent('canvas-container');
+        
+        // Button Logic
+        document.getElementById('windBtn').addEventListener('click', () => {
+            // Apply a random strong force (up or down)
+            windForce = random() > 0.5 ? -15 : 15;
+        });
+    }
+
+    function draw() {
+        background(10); // Clear screen with dark grey
+
+        // 1. READ INPUT
+        let sliderVal = document.getElementById('thrustSlider').value;
+        let thrust = map(sliderVal, 0, 100, 0, 1.2); // Map 0-100% to force
+
+        // 2. PHYSICS ENGINE
+        velocity += gravity;          // Apply Gravity
+        velocity -= thrust;           // Apply Engine Thrust
+        velocity += windForce;        // Apply Wind (if any)
+        velocity *= friction;         // Apply Air Resistance
+
+        droneY += velocity;           // Update Position
+
+        // Decay the wind force (simulating a gust passing)
+        windForce *= 0.9; 
+
+        // Floor/Ceiling collision
+        if (droneY > height - 20) {
+            droneY = height - 20;
+            velocity *= -0.5; // Bounce slightly
+        }
+        if (droneY < 20) {
+            droneY = 20;
+            velocity = 0;
+        }
+
+        // 3. DRAW VISUALS
+        
+        // A. The History Trail (The "Sizzle")
+        historyPath.push(droneY);
+        if (historyPath.length > width/2) historyPath.shift(); // Keep trail short
+
+        noFill();
+        stroke(100);
+        strokeWeight(1);
+        beginShape();
+        for (let i = 0; i < historyPath.length; i++) {
+            // Draw the trail flowing down nicely
+            let x = width/2 + (i - historyPath.length/2) * 2; // Spread horizontally slightly? 
+            // Actually, let's just draw a faint line following the drone vertically
+        }
+        endShape();
+
+        // B. The Target (Blue Line)
+        drawingContext.shadowBlur = 20;
+        drawingContext.shadowColor = '#2563eb';
+        stroke('#2563eb');
+        strokeWeight(2);
+        line(0, targetY, width, targetY);
+        
+        noStroke();
+        fill('#2563eb');
+        textSize(12);
+        text("TARGET SETPOINT", 10, targetY - 10);
+
+        // C. The Drone (Positronic Purple)
+        let glowColor = color(139, 92, 246); // Purple
+        
+        // If unstable (far from target), flicker or change color?
+        let error = abs(targetY - droneY);
+        if (error > 100) {
+            drawingContext.shadowColor = 'red';
+            fill(255, 50, 50); // Warning Red
+        } else {
+            drawingContext.shadowColor = '#8b5cf6';
+            fill(glowColor);
+        }
+        
+        drawingContext.shadowBlur = 30;
+        ellipse(width / 2, droneY, 40, 40);
+
+        // D. Wind Visual
+        if (abs(windForce) > 0.5) {
+            fill(255);
+            drawingContext.shadowBlur = 0;
+            textAlign(CENTER);
+            text(">>> WIND GUST <<<", width/2, height/2);
+        }
+
+        // 4. DATA OVERLAY (The "Engineer's View")
+        drawingContext.shadowBlur = 0; // Reset glow for text
+        fill(200);
+        textAlign(LEFT);
+        text(`ALTITUDE: ${Math.round(height - droneY)}`, 20, 30);
+        text(`VELOCITY: ${velocity.toFixed(1)}`, 20, 50);
+        
+        // Show the "Error" (The lesson)
+        let errorVal = Math.round(targetY - droneY);
+        text(`ERROR: ${errorVal}`, 20, 70);
+    }
+</script>
+</body>
+</html>

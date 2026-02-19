@@ -3,97 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ren'e Garc'ia Torres - Portfolio</title>
+    <title>Positronic Soul | Electronics & Code</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="main-grid">
-        
-        <aside class="sidebar">
-            <div class="profile-block">
-                <div class="avatar-placeholder"></div>
-                <h1>Ren'e Garc'ia Torres</h1>
-                <p class="role">Electrical Engineering Student</p>
-                <p class="sub-role">Power Electronics & Embedded Systems</p>
-                
-                <div class="location-badge">
-                    <span>📍 Stockholm, Sweden</span>
+    <nav class="navbar">
+        <span class="brand">POSITRONIC SOUL</span>
+        <div class="nav-links">
+            <a href="#logs">Logs</a>
+            <a href="#youtube">YouTube</a>
+            <a href="#gallery">Gallery</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+
+        <header class="hero-section">
+            <div class="glitch-wrapper">
+                <h1 class="glitch" data-text="POSITRONIC SOUL">POSITRONIC SOUL</h1>
+            </div>
+            <p class="subtitle">
+                Exploring the ghost in the machine. <br>
+                <span class="highlight">Power Electronics</span> • <span class="highlight">Embedded Systems</span> • <span class="highlight">Retro-Computing</span>
+            </p>
+        </header>
+
+        <section id="youtube" class="bento-grid">
+            <div class="card video-card">
+                <div class="video-placeholder">
+                    <span>▶ Latest Transmission</span>
+                </div>
+                <div class="card-content">
+                    <h3>Building a wBMS from Scratch</h3>
+                    <p>Part 1: The Circuit Design</p>
                 </div>
             </div>
 
-            <hr class="divider">
-
-            <div class="contact-block">
-                <h3>Connect</h3>
-                <a href="mailto:your.email@kth.se" class="btn btn-primary">Email Me</a>
-                <div class="social-links">
-                    <a href="#">LinkedIn</a>
-                    <a href="#">GitHub</a>
-                    <a href="#">YouTube (Positronic Soul)</a>
+            <div class="card status-card">
+                <span class="label">CURRENT STATUS</span>
+                <div class="status-indicator">
+                    <span class="dot"></span>
+                    <span>Debugging STM32</span>
                 </div>
             </div>
 
-            <hr class="divider">
-
-            <div class="skills-block">
-                <h3>Core Stack</h3>
-                <ul class="skill-list">
-                    <li>C / C++</li>
-                    <li>Python & LaTeX</li>
-                    <li>Linux (Debian)</li>
-                    <li>KiCad / Spice</li>
-                    <li>Embedded Systems</li>
-                    <li>Darktable</li>
-                </ul>
+            <div class="card social-card">
+                <a href="#">YouTube &rarr;</a>
+                <a href="#">GitHub &rarr;</a>
             </div>
-        </aside>
+        </section>
 
-        <main class="content-area">
+        <section id="logs" class="logs-section">
+            <h2 class="section-title">Experiment Logs</h2>
             
-            <section class="card">
-                <h2>About Me</h2>
-                <p>
-                    I am an Electrical Engineering student at <strong>KTH Royal Institute of Technology</strong>, 
-                    specializing in Power Electronics and Electrical Machines. My work sits at the intersection 
-                    of hardware and software—building robust embedded systems and efficient power converters.
-                </p>
-                <p style="margin-top: 10px;">
-                    When I'm not debugging wBMS code or designing circuits, I explore 
-                    <strong>architecture history</strong> and analog photography.
-                </p>
-            </section>
-
-            <section class="card">
-                <h2>Education</h2>
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <h3>KTH Royal Institute of Technology</h3>
-                        <span class="date">Current</span>
-                    </div>
-                    <p class="degree">M.Sc. in Electrical Engineering</p>
-                    <p class="details">Focus: Wireless Battery Management Systems (wBMS), Power Electronics.</p>
-                </div>
-            </section>
-
-            <section class="card">
-                <h2>Key Projects</h2>
+            <div class="timeline">
                 
-                <div class="project-item">
-                    <h3>Wireless BMS Poster</h3>
-                    <p>Research and structural design for a university project on Wireless Battery Management Systems.</p>
-                    <span class="tag">Academic</span> <span class="tag">Research</span>
+                <div class="log-entry">
+                    <div class="log-date">2026-02-09</div>
+                    <div class="log-content">
+                        <h3>High Voltage Test FAILED</h3>
+                        <p>The MOSFETs overheated immediately. I suspect the gate driver ringing is causing false turn-ons. Need to re-calculate the snubber circuit.</p>
+                        <div class="tags">
+                            <span class="tag">Fail</span>
+                            <span class="tag">Power Electronics</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="project-item">
-                    <h3>Positronic Soul</h3>
-                    <p>Creating educational content focused on electronics engineering and project documentation.</p>
-                    <span class="tag">Media</span> <span class="tag">Electronics</span>
+                <div class="log-entry">
+                    <div class="log-date">2026-02-02</div>
+                    <div class="log-content">
+                        <h3>Zorba The Bot: Chassis Design</h3>
+                        <p>3D printed the first prototype for the walker robot. Integrating the servo motors next week.</p>
+                        <div class="tags">
+                            <span class="tag">Robotics</span>
+                            <span class="tag">3D Printing</span>
+                        </div>
+                    </div>
                 </div>
-            </section>
 
-        </main>
+            </div>
+        </section>
+
     </div>
 
 </body>
