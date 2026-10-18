@@ -1,43 +1,24 @@
-# CV Starter — simple static site
+# This is me.
+In the future, this page is intended to form part of the 512 Kb club; that is, it should weight *less* than 512 Kb in total. Keeping it simple while efficient. The images are the biggest challenge here.
 
-This is a small static site you can edit to build your CV/resume.
+# Elements
 
-Files added
-- `index.html` — main page to edit (open in a browser to preview)
-- `css/styles.css` — simple styling
-- `js/script.js` — small interactions (mobile nav, copy email)
+## My Pictures
+A glimpse to the world viewed through a camera.
 
-Quick preview
+## My projects
+Embedded projects mainly. Non-tech stuff as well! Keep it as a single place portfolio.
+### Project: Entropy; how nature prevents us to reach 100% efficiency.
+TODO: I recently had some thoughts. Everyone has heard the quote "Energy is not created nor destroyed, but transformed." (or something like that). Its easy to believe that because we see it everyday. We also see how we are having very high efficiency machines (like hearing about electrical motors that are reaching 96% of efficiency of transforming electrical energy to mechanical). The usual way of thinking here is that we  haven't reached the 100% simply because we don't have the technology for it, we cannot build cheap superconductors, infinitesimally thin laminated steel, etc. But, what about the carnot cycle for example? As far as I remember from my thermodynamics lessons, there *is* a physical limit, that even when the machine is ideal and unfeasible in reality, it doesn't reach 100% efficiency, am I right?
 
-Option A — open directly (simple):
+## Some thoughts
+Whatever doesn't fit in the previous categories
 
-```bash
-xdg-open index.html
-```
+# Footnotes
+This site is vibe-coded, and I'm proud of it, I paid for those tokens and hopefully save a bunch of time.
+ 
+Keep It Simple!
 
-Option B — run a tiny static server (recommended for consistent relative paths):
+Ensure that the images you upload doesn't contain metadata that could overshare information!
 
-```bash
-# from the project folder
-python3 -m http.server 8000
-# then open http://localhost:8000 in your browser
-```
-
-Export to PDF
-
-- Open `index.html` in the browser and use Print -> Save as PDF. Use A4 or Letter and "Scale: 100%" for best results.
-- For automated conversion with styling preserved, install `wkhtmltopdf` or use `pandoc` with a CSS file.
-
-Deploy options
-
-- GitHub Pages: commit this folder to a repo and enable Pages (branch `main` or `gh-pages`).
-- Netlify / Vercel: both detect static sites and deploy with zero config — connect your repo and push.
-
-Next steps I can help with
-
-- Add your personal content (I can fill sections if you give me text)
-- Improve typography and print styles for PDF
-- Add a downloadable `cv.pdf` and social links
-- Set up a GitHub repository and automatic deploy to GitHub Pages
-
-Tell me what you'd like to do next and I will continue.
+mail reneogt@kth.se
