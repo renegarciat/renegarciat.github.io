@@ -1,6 +1,6 @@
 # This is me.
 In the future, this page is intended to form part of the 512 Kb club; that is, it should weight *less* than 512 Kb in total. Keeping it simple while efficient. The images are the biggest challenge here.
-
+<!-- 
 # Elements
 
 ## My Pictures
@@ -15,10 +15,11 @@ TODO: I recently had some thoughts. Everyone has heard the quote "Energy is not 
 Whatever doesn't fit in the previous categories
 
 # Footnotes
-This site is vibe-coded, and I'm proud of it, I paid for those tokens and hopefully save a bunch of time.
+This site is vibe-coded, and I'm proud of it, I paid for those tokens and hopefully saved a bunch of time.
  
 Keep It Simple!
 
 Ensure that the images you upload doesn't contain metadata that could overshare information!
 
 mail reneogt@kth.se
+-->

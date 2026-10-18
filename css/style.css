@@ -153,23 +153,37 @@ figcaption {
     color: var(--accent);
 }
 
-/* Photo row: every photo shares the same height, so they read as a uniform
-   set, but each keeps its own natural width/aspect ratio — no cropping or
-   stretching, unlike a forced-square grid. */
+/* Gallery: Clean vertical stack of edge-to-edge flush rows */
 .gallery {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    gap: 24px;
     margin-top: 24px;
 }
 
+/* Each row spans 100% of the column width, flushing left and right */
+.gallery-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+/* Each item expands in proportion to its native aspect ratio */
 .gallery-item {
-    flex: 0 0 auto;
+    flex: var(--ratio, 1) var(--ratio, 1) 0;
+    min-width: 0;
 }
 
 .gallery-item img {
-    height: 220px;
-    width: auto;
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 640px) {
+    .gallery-row {
+        flex-direction: column;
+    }
 }
 
 /* Wide screens (laptop+): the masthead becomes a row with the photo on
@@ -192,10 +206,6 @@ figcaption {
         max-width: 340px;
         flex-shrink: 0;
     }
-
-    .gallery-item img {
-        height: 420px;
-    }
 }
 
 /* Large desktop monitors: go further still — this is the "big proportions"*/
@@ -203,9 +213,5 @@ figcaption {
     .masthead-photo {
         width: 420px;
         max-width: 420px;
-    }
-
-    .gallery-item img {
-        height: 560px;
     }
 }
